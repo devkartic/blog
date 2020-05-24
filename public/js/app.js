@@ -69913,6 +69913,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -69940,13 +69946,33 @@ var Login = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Login);
 
-  function Login() {
+  function Login(props) {
+    var _this;
+
     _classCallCheck(this, Login);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      email: '',
+      password: ''
+    };
+    _this.onchangeHandler = _this.onchangeHandler.bind(_assertThisInitialized(_this));
+    _this.onsubmitHandler = _this.onsubmitHandler.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Login, [{
+    key: "onsubmitHandler",
+    value: function onsubmitHandler(event) {
+      event.preventDefault();
+      console.log(this.state);
+    }
+  }, {
+    key: "onchangeHandler",
+    value: function onchangeHandler(event) {
+      this.setState(_objectSpread(_objectSpread({}, this.state), {}, _defineProperty({}, event.target.name, event.target.value)));
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -69962,6 +69988,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
       }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.onsubmitHandler,
         method: "POST",
         action: "#"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -69975,8 +70002,9 @@ var Login = /*#__PURE__*/function (_React$Component) {
         id: "email",
         type: "email",
         className: "form-control",
+        onChange: this.onchangeHandler,
         name: "email",
-        value: "",
+        value: this.state.email,
         required: true,
         autoComplete: "email",
         autoFocus: true
@@ -69991,7 +70019,9 @@ var Login = /*#__PURE__*/function (_React$Component) {
         id: "password",
         type: "password",
         className: "form-control",
+        onChange: this.onchangeHandler,
         name: "password",
+        value: this.state.password,
         required: true,
         autoComplete: "current-password"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70007,7 +70037,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
         id: "remember"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "form-check-label",
-        For: "remember"
+        htmlFor: "remember"
       }, "Remember Me")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group row mb-0"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70042,6 +70072,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -70069,13 +70105,34 @@ var Register = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Register);
 
-  function Register() {
+  function Register(props) {
+    var _this;
+
     _classCallCheck(this, Register);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      name: '',
+      email: '',
+      password: ''
+    };
+    _this.onchangeHandler = _this.onchangeHandler.bind(_assertThisInitialized(_this));
+    _this.onsubmitHandler = _this.onsubmitHandler.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Register, [{
+    key: "onsubmitHandler",
+    value: function onsubmitHandler(event) {
+      event.preventDefault();
+      console.log(this.state);
+    }
+  }, {
+    key: "onchangeHandler",
+    value: function onchangeHandler(event) {
+      this.setState(_objectSpread(_objectSpread({}, this.state), {}, _defineProperty({}, event.target.name, event.target.value)));
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70091,6 +70148,7 @@ var Register = /*#__PURE__*/function (_React$Component) {
       }, "Register"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.onsubmitHandler,
         method: "POST",
         action: "#"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70105,7 +70163,8 @@ var Register = /*#__PURE__*/function (_React$Component) {
         type: "text",
         className: "form-control",
         name: "name",
-        value: "",
+        onChange: this.onchangeHandler,
+        value: this.state.name,
         required: true,
         autoComplete: "name",
         autoFocus: true
@@ -70121,7 +70180,8 @@ var Register = /*#__PURE__*/function (_React$Component) {
         type: "email",
         className: "form-control",
         name: "email",
-        value: "",
+        onChange: this.onchangeHandler,
+        value: this.state.email,
         required: true,
         autoComplete: "email"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70136,6 +70196,8 @@ var Register = /*#__PURE__*/function (_React$Component) {
         type: "password",
         className: "form-control",
         name: "password",
+        onChange: this.onchangeHandler,
+        value: this.state.password,
         required: true,
         autoComplete: "new-password"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70150,6 +70212,8 @@ var Register = /*#__PURE__*/function (_React$Component) {
         type: "password",
         className: "form-control",
         name: "password_confirmation",
+        onChange: this.onchangeHandler,
+        value: this.state.password,
         required: true,
         autoComplete: "new-password"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
