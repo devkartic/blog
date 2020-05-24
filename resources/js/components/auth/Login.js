@@ -6,7 +6,8 @@ class Login extends React.Component{
         super(props);
         this.state = {
             email : '',
-            password: ''
+            password: '',
+            token:''
         }
         this.onchangeHandler = this.onchangeHandler.bind(this)
         this.onsubmitHandler = this.onsubmitHandler.bind(this)
@@ -14,7 +15,15 @@ class Login extends React.Component{
 
     onsubmitHandler(event){
         event.preventDefault();
-        console.log(this.state);
+        axios.post('http://127.0.0.1:8000/login', {
+            email : this.state.email,
+            password : this.state.password,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).then(response=>{
+            console.log(response.data);
+        });
     }
 
     onchangeHandler(event){
