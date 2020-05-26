@@ -20,7 +20,7 @@ class App extends React.Component{
         return(
             <div className="container-fluid">
                 <Nav/>
-                <div className="row justify-content-center">
+                <div className="row">
                     <Switch>
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />

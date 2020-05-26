@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import SignIn from "./layouts/SignIn";
+import SignOut from "./layouts/SignOut";
 function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,14 +21,8 @@ function Nav() {
                         <a className="nav-link" href="#">Contact us</a>
                     </li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                <div className="form-inline my-2 my-lg-0">
-                    <Link to='/login' className="btn btn-outline-primary my-2 my-sm-0 ml-2" type="button">Login</Link>
-                    <Link to='/register' className="btn btn-outline-primary my-2 my-sm-0 ml-2" type="button">Register</Link>
-                </div>
+                <SignIn/>
+                <SignOut/>
             </div>
         </nav>
     );
