@@ -12,6 +12,12 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Dashboard from "./layouts/Dashboard";
 
+import {createStore} from 'redux';
+import rootReducer from "../store/reducers/rootReducer";
+import {Provider} from "react-redux";
+
+const store = createStore(rootReducer);
+
 class App extends React.Component{
     constructor(prop) {
         super(prop);
@@ -36,5 +42,5 @@ class App extends React.Component{
 export default App;
 
 if (document.getElementById('app')) {
-    ReactDOM.render(<Router><App /></Router>, document.getElementById('app'));
+    ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('app'));
 }
