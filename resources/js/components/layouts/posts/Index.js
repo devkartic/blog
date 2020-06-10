@@ -4,7 +4,7 @@ import AddPost from "../../../store/actions/Post";
 
 class Index extends React.Component{
     render(){
-        console.log(this.props);
+        // console.log(this.props);
         return(
             <div className="card">
                 <div className="card-header">Welcome to</div>

@@ -1,8 +1,0 @@
-const AddPost = (id) => {
-    return {
-        type: 'addPost',
-        id
-    }
-}
-
-export default AddPost;

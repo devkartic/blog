@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import AddPost from "../../../store/actions/Post";
+import {createPost} from "../../../store/actions/Post";
 
 class Index extends React.Component{
     constructor(props) {
@@ -16,7 +16,8 @@ class Index extends React.Component{
 
     onsubmitHandler(event){
         event.preventDefault();
-        console.log(this.state);
+        // console.log(this.state);
+        this.props.createPost(this.state);
     }
 
     onchangeHandler(event){
@@ -26,7 +27,7 @@ class Index extends React.Component{
     }
 
     render(){
-        console.log(this.props);
+        // console.log(this.props);
         return(
             <div className="container">
                 <div className="row justify-content-center">
@@ -36,7 +37,6 @@ class Index extends React.Component{
 
                             <div className="card-body">
                                 <form onSubmit={this.onsubmitHandler} method="POST" action="#">
-
                                     <div className="form-group row">
                                         <label htmlFor="title" className="col-md-4 col-form-label text-md-right">Title</label>
 
@@ -77,10 +77,9 @@ class Index extends React.Component{
 }
 
 const mapDispatchToProps = (dispatch) => {
-    const id = 3
     return {
-        addPost: (id) => dispatch(AddPost(id))
+        createPost: (post) => dispatch(createPost(post))
     }
 }
 
-export default connect(mapDispatchToProps)(Index);
+export default connect(null, mapDispatchToProps) (Index);

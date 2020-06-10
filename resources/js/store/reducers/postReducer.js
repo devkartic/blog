@@ -7,7 +7,12 @@ const initState = {
 }
 
 const authReducer = (state=initState, action) => {
-    return state;
+    switch (action.type) {
+        case 'CREATE_POST':
+            console.log('Post.js submitted', action.post);
+    }
+
+    return state
 }
 
 export default authReducer;

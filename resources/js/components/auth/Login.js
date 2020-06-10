@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 class Login extends React.Component{
 
@@ -33,6 +34,7 @@ class Login extends React.Component{
     }
 
     render(){
+        // console.log(this.props);
         return(
             <div className="container">
                 <div className="row justify-content-center">
@@ -82,4 +84,15 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        user: state.auth.user
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        AddPost: ()=> 4
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Login);
