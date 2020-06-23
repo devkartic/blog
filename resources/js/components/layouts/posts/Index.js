@@ -1,10 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import AddPost from "../../../store/actions/Post";
+import {allPost} from "../../../store/actions/Post";
 
 class Index extends React.Component{
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.allPost();
+    }
+
     render(){
-        // console.log(this.props);
+        console.log(this.props);
         return(
             <div className="card">
                 <div className="card-header">Welcome to</div>
@@ -44,4 +52,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Index);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        allPost: () => dispatch(allPost())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Index);

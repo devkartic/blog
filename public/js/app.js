@@ -73765,16 +73765,21 @@ var Index = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Index);
 
-  function Index() {
+  function Index(props) {
     _classCallCheck(this, Index);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(Index, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.allPost();
+    }
+  }, {
     key: "render",
     value: function render() {
-      // console.log(this.props);
+      console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73820,7 +73825,15 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Index));
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    allPost: function allPost() {
+      return dispatch(Object(_store_actions_Post__WEBPACK_IMPORTED_MODULE_2__["allPost"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Index));
 
 /***/ }),
 
@@ -73828,16 +73841,42 @@ var mapStateToProps = function mapStateToProps(state) {
 /*!********************************************!*\
   !*** ./resources/js/store/actions/Post.js ***!
   \********************************************/
-/*! exports provided: createPost */
+/*! exports provided: createPost, allPost */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPost", function() { return createPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allPost", function() { return allPost; });
 var createPost = function createPost(post) {
+  post.id = Math.random();
   return {
     type: 'CREATE_POST',
     post: post
+  };
+};
+var allPost = function allPost() {
+  var initState = {
+    posts: [{
+      id: 1,
+      title: 'Title 1',
+      subtitle: 'subtitle 1',
+      content: 'Content 1'
+    }, {
+      id: 2,
+      title: 'Title 2',
+      subtitle: 'subtitle 2',
+      content: 'Content 2'
+    }, {
+      id: 3,
+      title: 'Title 3',
+      subtitle: 'subtitle 3',
+      content: 'Content 3'
+    }]
+  };
+  return {
+    type: 'ALL_POST',
+    posts: initState
   };
 };
 
@@ -73881,20 +73920,20 @@ var authReducer = function authReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 var initState = {
-  posts: [{
-    id: 1,
-    title: 'Title 1',
-    content: 'Content 1'
-  }, {
-    id: 2,
-    title: 'Title 2',
-    content: 'Content 2'
-  }, {
-    id: 3,
-    title: 'Title 3',
-    content: 'Content 3'
-  }]
+  posts: []
 };
 
 var authReducer = function authReducer() {
@@ -73903,10 +73942,15 @@ var authReducer = function authReducer() {
 
   switch (action.type) {
     case 'CREATE_POST':
-      console.log('Post.js submitted', action.post);
-  }
+      // console.log('Post.js submitted', action.post);
+      return [].concat(_toConsumableArray(state.posts), [action.post]);
 
-  return state;
+    case 'ALL_POST':
+      return action.posts;
+
+    default:
+      return state;
+  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (authReducer);
