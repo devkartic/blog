@@ -73986,7 +73986,7 @@ var authReducer = function authReducer() {
 
     case 'DELETE_POST':
       return {
-        post: state.posts.map(function (post) {
+        posts: state.posts.filter(function (post) {
           return action.post_id !== post.id;
         })
       };
