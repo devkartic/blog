@@ -20,8 +20,8 @@ import Create from "./layouts/posts/Create";
 const store = createStore(rootReducer);
 
 class App extends React.Component{
-    constructor(prop) {
-        super(prop);
+    constructor(props) {
+        super(props);
     }
     render() {
         return(

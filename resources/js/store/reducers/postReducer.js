@@ -9,10 +9,8 @@ const initState = {
 const authReducer = (state=initState, action) => {
     switch (action.type) {
         case 'CREATE_POST':
-            // console.log('Post.js submitted', action.post);
             return { posts: [...state.posts, action.post] };
         case 'ALL_POST':
-            console.log(action.posts);
             return action.posts;
         default:
             return state;

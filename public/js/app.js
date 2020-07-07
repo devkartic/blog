@@ -72919,10 +72919,10 @@ var App = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(App);
 
-  function App(prop) {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _super.call(this, prop);
+    return _super.call(this, props);
   }
 
   _createClass(App, [{
@@ -73622,6 +73622,7 @@ var Index = /*#__PURE__*/function (_React$Component) {
       event.preventDefault(); // console.log(this.state);
 
       this.props.createPost(this.state);
+      this.props.history.push('/');
     }
   }, {
     key: "onchangeHandler",
@@ -73770,13 +73771,14 @@ var Index = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*
+      componentDidMount() {
+          this.props.allPost();
+      }
+  */
+
 
   _createClass(Index, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.allPost();
-    }
-  }, {
     key: "render",
     value: function render() {
       console.log(this.props);
@@ -73786,33 +73788,23 @@ var Index = /*#__PURE__*/function (_React$Component) {
         className: "card-header"
       }, "Welcome to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card mt-3"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "card-title"
-      }, "Subtitle"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "card-text"
-      }, "With supporting text below as a natural lead-in to additional content."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "btn btn-primary"
-      }, "View Details"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card mt-3"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "card-title"
-      }, "Subtitle"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "card-text"
-      }, "With supporting text below as a natural lead-in to additional content."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "btn btn-primary"
-      }, "View Details")))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Dashboard"), this.props.posts.map(function (post) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card mt-3",
+          key: post.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-header"
+        }, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "card-title"
+        }, post.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "card-text"
+        }, " ", post.content, " With supporting text below as a natural lead-in to additional content."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#",
+          className: "btn btn-primary"
+        }, "View Details")));
+      })));
     }
   }]);
 
@@ -73957,13 +73949,11 @@ var authReducer = function authReducer() {
 
   switch (action.type) {
     case 'CREATE_POST':
-      // console.log('Post.js submitted', action.post);
       return {
         posts: [].concat(_toConsumableArray(state.posts), [action.post])
       };
 
     case 'ALL_POST':
-      console.log(action.posts);
       return action.posts;
 
     default:

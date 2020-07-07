@@ -18,6 +18,7 @@ class Index extends React.Component{
         event.preventDefault();
         // console.log(this.state);
         this.props.createPost(this.state);
+        this.props.history.push('/');
     }
 
     onchangeHandler(event){
