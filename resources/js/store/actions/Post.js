@@ -19,3 +19,10 @@ export const allPost = () => {
         posts: initState
     }
 }
+
+export const deletePost = (id) => {
+    return {
+        type: 'DELETE_POST',
+        post_id: id
+    }
+}

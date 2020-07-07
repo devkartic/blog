@@ -1,10 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {allPost} from "../../../store/actions/Post";
+import {allPost, deletePost} from "../../../store/actions/Post";
 
 class Index extends React.Component{
     constructor(props) {
         super(props);
+    }
+
+    deletePost(id) {
+        this.props.deletePost(id);
     }
 /*
     componentDidMount() {
@@ -25,6 +29,10 @@ class Index extends React.Component{
                                 <div className="card mt-3" key={post.id}>
                                     <div className="card-header">
                                         {post.title}
+                                        <div className="btn-group float-right" role="group" aria-label="Basic example">
+                                            <button type="button" className="btn btn-warning mr-1">Edit</button>
+                                            <button type="button" onClick={() => this.deletePost(post.id)} className="btn btn-danger">Remove</button>
+                                        </div>
                                     </div>
                                     <div className="card-body">
                                         <h5 className="card-title">{post.subtitle}</h5>
@@ -50,7 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        allPost: () => dispatch(allPost())
+        // allPost: () => dispatch(allPost()),
+        deletePost: (id) => dispatch(deletePost(id))
     }
 }
 

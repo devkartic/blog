@@ -73771,16 +73771,23 @@ var Index = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
-  /*
-      componentDidMount() {
-          this.props.allPost();
-      }
-  */
-
 
   _createClass(Index, [{
+    key: "deletePost",
+    value: function deletePost(id) {
+      this.props.deletePost(id);
+    }
+    /*
+        componentDidMount() {
+            this.props.allPost();
+        }
+    */
+
+  }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card"
@@ -73794,7 +73801,20 @@ var Index = /*#__PURE__*/function (_React$Component) {
           key: post.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card-header"
-        }, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, post.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "btn-group float-right",
+          role: "group",
+          "aria-label": "Basic example"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-warning mr-1"
+        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          onClick: function onClick() {
+            return _this.deletePost(post.id);
+          },
+          className: "btn btn-danger"
+        }, "Remove"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
           className: "card-title"
@@ -73819,8 +73839,9 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    allPost: function allPost() {
-      return dispatch(Object(_store_actions_Post__WEBPACK_IMPORTED_MODULE_2__["allPost"])());
+    // allPost: () => dispatch(allPost()),
+    deletePost: function deletePost(id) {
+      return dispatch(Object(_store_actions_Post__WEBPACK_IMPORTED_MODULE_2__["deletePost"])(id));
     }
   };
 };
@@ -73833,13 +73854,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /*!********************************************!*\
   !*** ./resources/js/store/actions/Post.js ***!
   \********************************************/
-/*! exports provided: createPost, allPost */
+/*! exports provided: createPost, allPost, deletePost */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPost", function() { return createPost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allPost", function() { return allPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePost", function() { return deletePost; });
 var createPost = function createPost(post) {
   post.id = Math.random();
   return {
@@ -73869,6 +73891,12 @@ var allPost = function allPost() {
   return {
     type: 'ALL_POST',
     posts: initState
+  };
+};
+var deletePost = function deletePost(id) {
+  return {
+    type: 'DELETE_POST',
+    post_id: id
   };
 };
 
@@ -73955,6 +73983,13 @@ var authReducer = function authReducer() {
 
     case 'ALL_POST':
       return action.posts;
+
+    case 'DELETE_POST':
+      return {
+        post: state.posts.map(function (post) {
+          return action.post_id !== post.id;
+        })
+      };
 
     default:
       return state;

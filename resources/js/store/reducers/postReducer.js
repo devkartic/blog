@@ -12,6 +12,8 @@ const authReducer = (state=initState, action) => {
             return { posts: [...state.posts, action.post] };
         case 'ALL_POST':
             return action.posts;
+        case 'DELETE_POST':
+            return { post: state.posts.map((post)=>{ return action.post_id !== post.id }) };
         default:
             return state;
     }
