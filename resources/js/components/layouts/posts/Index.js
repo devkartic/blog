@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {allPost, deletePost} from "../../../store/actions/Post";
+import {Link} from "react-router-dom";
 
 class Index extends React.Component{
     constructor(props) {
@@ -30,7 +31,7 @@ class Index extends React.Component{
                                     <div className="card-header">
                                         {post.title}
                                         <div className="btn-group float-right" role="group" aria-label="Basic example">
-                                            <button type="button" className="btn btn-warning mr-1">Edit</button>
+                                            <Link to={`/post-edit/${post.id}`} className="btn btn-warning mr-1" type="button">Edit</Link>
                                             <button type="button" onClick={() => this.deletePost(post.id)} className="btn btn-danger">Remove</button>
                                         </div>
                                     </div>

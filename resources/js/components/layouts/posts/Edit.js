@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {createPost} from "../../../store/actions/Post";
 
-class Create extends React.Component{
+class Edit extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -28,13 +28,14 @@ class Create extends React.Component{
     }
 
     render(){
-        // console.log(this.props);
+        let post = this.props.match.params.id;
+        console.log(post);
         return(
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-10">
                         <div className="card">
-                            <div className="card-header">Create Post</div>
+                            <div className="card-header">Edit Post</div>
 
                             <div className="card-body">
                                 <form onSubmit={this.onsubmitHandler} method="POST" action="#">
@@ -64,7 +65,7 @@ class Create extends React.Component{
 
                                     <div className="form-group row mb-0">
                                         <div className="col-md-6 offset-md-4">
-                                            <button type="submit" className="btn btn-primary">Submit</button>
+                                            <button type="submit" className="btn btn-primary">Update</button>
                                         </div>
                                     </div>
                                 </form>
@@ -77,10 +78,16 @@ class Create extends React.Component{
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        post: state
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         createPost: (post) => dispatch(createPost(post))
     }
 }
 
-export default connect(null, mapDispatchToProps) (Create);
+export default connect(mapStateToProps, mapDispatchToProps) (Edit);

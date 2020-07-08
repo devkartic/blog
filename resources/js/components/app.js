@@ -16,6 +16,7 @@ import {createStore} from 'redux';
 import rootReducer from "../store/reducers/rootReducer";
 import {Provider} from "react-redux";
 import Create from "./layouts/posts/Create";
+import Edit from "./layouts/posts/Edit";
 
 const store = createStore(rootReducer);
 
@@ -32,7 +33,8 @@ class App extends React.Component{
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                         <Route path="/" exact component={Dashboard} />
-                        <Route path="/post-create" exact component={Create} />
+                        <Route path="/post-create" component={Create} />
+                        <Route path="/post-edit/:id" component={Edit} />
                     </Switch>
                 </div>
                 <Footer/>
