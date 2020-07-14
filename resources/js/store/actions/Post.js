@@ -6,17 +6,18 @@ export const createPost = (post) => {
     }
 }
 
-export const allPost = () => {
-    let initState = {
-        posts: [
-            {id: 1, title: 'Title 1', subtitle: 'subtitle 1', content: 'Content 1'},
-            {id: 2, title: 'Title 2', subtitle: 'subtitle 2', content: 'Content 2'},
-            {id: 3, title: 'Title 3', subtitle: 'subtitle 3', content: 'Content 3'}
-        ]
-    };
+export const editPost = (id) => {
     return {
-        type: 'ALL_POST',
-        posts: initState
+        type: 'EDIT_POST',
+        post: {id: 2, title: 'Title 2', subtitle: 'subtitle 2', content: 'Content 2'}
+    }
+}
+
+export const updatePost = (post, id) => {
+    post.id = Math.random();
+    return {
+        type: 'UPDATE_POST',
+        post: post
     }
 }
 

@@ -1,35 +1,45 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {createPost} from "../../../store/actions/Post";
+import {createPost, editPost, updatePost} from "../../../store/actions/Post";
 
-class Create extends React.Component{
+class Create extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
             subtitle: '',
-            content: ''
+            content: '',
+            edit: false
         }
-        this.onchangeHandler = this.onchangeHandler.bind(this)
-        this.onsubmitHandler = this.onsubmitHandler.bind(this)
     }
 
-    onsubmitHandler(event){
+    onsubmitHandler(event) {
         event.preventDefault();
         // console.log(this.state);
         this.props.createPost(this.state);
         this.props.history.push('/');
     }
 
-    onchangeHandler(event){
+    onchangeHandler(event) {
         this.setState({
-            ...this.state, [event.target.name] : event.target.value
+            ...this.state, [event.target.name]: event.target.value
         });
     }
 
-    render(){
-        // console.log(this.props);
-        return(
+    componentDidMount() {
+        let post_id = this.props.match.params.id;
+        if (typeof post_id !== 'undefined') {
+            let post = this.props.editPost(post_id);
+            this.setState({
+                title: post.post.title,
+                subtitle: post.post.subtitle,
+                content: post.post.content
+            })
+        }
+    }
+
+    render() {
+        return (
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-10">
@@ -37,28 +47,37 @@ class Create extends React.Component{
                             <div className="card-header">Create Post</div>
 
                             <div className="card-body">
-                                <form onSubmit={this.onsubmitHandler} method="POST" action="#">
+                                <form onSubmit={(e)=>this.onsubmitHandler(e)} method="POST" action="#">
                                     <div className="form-group row">
-                                        <label htmlFor="title" className="col-md-4 col-form-label text-md-right">Title</label>
+                                        <label htmlFor="title"
+                                               className="col-md-4 col-form-label text-md-right">Title</label>
 
                                         <div className="col-md-6">
-                                            <input id="title" type="text" className="form-control" name="title" onChange={this.onchangeHandler} value={this.state.title} required autoComplete="title" autoFocus />
+                                            <input id="title" type="text" className="form-control" name="title"
+                                                   onChange={(e)=>this.onchangeHandler(e)} value={this.state.title} required
+                                                   autoComplete="title" autoFocus/>
                                         </div>
                                     </div>
 
                                     <div className="form-group row">
-                                        <label htmlFor="subtitle" className="col-md-4 col-form-label text-md-right">Subtitle</label>
+                                        <label htmlFor="subtitle"
+                                               className="col-md-4 col-form-label text-md-right">Subtitle</label>
 
                                         <div className="col-md-6">
-                                            <input id="subtitle" type="text" className="form-control" name="subtitle" onChange={this.onchangeHandler} value={this.state.subtitle} required autoComplete="subtitle" />
+                                            <input id="subtitle" type="text" className="form-control" name="subtitle"
+                                                   onChange={(e)=>this.onchangeHandler(e)} value={this.state.subtitle} required
+                                                   autoComplete="subtitle"/>
                                         </div>
                                     </div>
 
                                     <div className="form-group row">
-                                        <label htmlFor="content" className="col-md-4 col-form-label text-md-right">Content</label>
+                                        <label htmlFor="content"
+                                               className="col-md-4 col-form-label text-md-right">Content</label>
 
                                         <div className="col-md-6">
-                                            <textarea id="content" className="form-control" name="content" onChange={this.onchangeHandler} value={this.state.content} required />
+                                            <textarea id="content" className="form-control" name="content"
+                                                      onChange={(e)=>this.onchangeHandler(e)} value={this.state.content}
+                                                      required/>
                                         </div>
                                     </div>
 
@@ -79,8 +98,10 @@ class Create extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createPost: (post) => dispatch(createPost(post))
+        createPost: (post) => dispatch(createPost(post)),
+        editPost: (id) => dispatch(editPost(id)),
+        updatePost: (post, id) => dispatch(updatePost(post, id))
     }
 }
 
-export default connect(null, mapDispatchToProps) (Create);
+export default connect(null, mapDispatchToProps)(Create);

@@ -10,8 +10,6 @@ class Login extends React.Component{
             password: '',
             token:''
         }
-        this.onchangeHandler = this.onchangeHandler.bind(this)
-        this.onsubmitHandler = this.onsubmitHandler.bind(this)
     }
 
     onsubmitHandler(event){
@@ -43,19 +41,19 @@ class Login extends React.Component{
                             <div className="card-header">Login</div>
 
                             <div className="card-body">
-                                <form onSubmit={this.onsubmitHandler} method="POST" action="#">
+                                <form onSubmit={(e)=>this.onsubmitHandler(e)} method="POST" action="#">
 
                                     <div className="form-group row">
                                         <label htmlFor="email" className="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                                         <div className="col-md-6">
-                                            <input id="email" type="email" className="form-control" onChange={this.onchangeHandler} name="email" value={this.state.email} required autoComplete="email" autoFocus />
+                                            <input id="email" type="email" className="form-control" onChange={(e)=>this.onchangeHandler(e)} name="email" value={this.state.email} required autoComplete="email" autoFocus />
                                         </div>
                                     </div>
 
                                     <div className="form-group row">
                                         <label htmlFor="password" className="col-md-4 col-form-label text-md-right">Password</label>
                                         <div className="col-md-6">
-                                            <input id="password" type="password" className="form-control" onChange={this.onchangeHandler} name="password" value={this.state.password} required autoComplete="current-password" />
+                                            <input id="password" type="password" className="form-control" onChange={(e)=>this.onchangeHandler(e)} name="password" value={this.state.password} required autoComplete="current-password" />
                                         </div>
                                     </div>
 

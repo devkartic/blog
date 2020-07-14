@@ -8,8 +8,6 @@ class Register extends React.Component{
             email: '',
             password: ''
         }
-        this.onchangeHandler = this.onchangeHandler.bind(this)
-        this.onsubmitHandler = this.onsubmitHandler.bind(this)
     }
 
     onsubmitHandler(event){
@@ -32,13 +30,13 @@ class Register extends React.Component{
                             <div className="card-header">Register</div>
 
                             <div className="card-body">
-                                <form onSubmit={this.onsubmitHandler} method="POST" action="#">
+                                <form onSubmit={(e)=>this.onsubmitHandler(e)} method="POST" action="#">
 
                                     <div className="form-group row">
                                         <label htmlFor="name" className="col-md-4 col-form-label text-md-right">Name</label>
 
                                         <div className="col-md-6">
-                                            <input id="name" type="text" className="form-control" name="name" onChange={this.onchangeHandler} value={this.state.name} required autoComplete="name" autoFocus />
+                                            <input id="name" type="text" className="form-control" name="name" onChange={(e)=>this.onchangeHandler(e)} value={this.state.name} required autoComplete="name" autoFocus />
                                         </div>
                                     </div>
 
@@ -46,7 +44,7 @@ class Register extends React.Component{
                                         <label htmlFor="email" className="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 
                                         <div className="col-md-6">
-                                            <input id="email" type="email" className="form-control" name="email" onChange={this.onchangeHandler} value={this.state.email} required autoComplete="email" />
+                                            <input id="email" type="email" className="form-control" name="email" onChange={(e)=>this.onchangeHandler(e)} value={this.state.email} required autoComplete="email" />
                                         </div>
                                     </div>
 
@@ -54,7 +52,7 @@ class Register extends React.Component{
                                         <label htmlFor="password" className="col-md-4 col-form-label text-md-right">Password</label>
 
                                         <div className="col-md-6">
-                                            <input id="password" type="password" className="form-control" name="password" onChange={this.onchangeHandler} value={this.state.password} required autoComplete="new-password" />
+                                            <input id="password" type="password" className="form-control" name="password" onChange={(e)=>this.onchangeHandler(e)} value={this.state.password} required autoComplete="new-password" />
                                         </div>
                                     </div>
 
@@ -63,7 +61,7 @@ class Register extends React.Component{
                                                className="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
                                         <div className="col-md-6">
-                                            <input id="password-confirm" type="password" className="form-control" name="password_confirmation" onChange={this.onchangeHandler} value={this.state.password} required autoComplete="new-password" />
+                                            <input id="password-confirm" type="password" className="form-control" name="password_confirmation" onChange={(e)=>this.onchangeHandler(e)} value={this.state.password} required autoComplete="new-password" />
                                         </div>
                                     </div>
 

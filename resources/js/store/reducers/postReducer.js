@@ -10,8 +10,6 @@ const authReducer = (state=initState, action) => {
     switch (action.type) {
         case 'CREATE_POST':
             return { posts: [...state.posts, action.post] };
-        case 'ALL_POST':
-            return action.posts;
         case 'DELETE_POST':
             return { posts: state.posts.filter((post)=>{ return action.post_id !== post.id }) };
         default:

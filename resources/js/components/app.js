@@ -34,7 +34,7 @@ class App extends React.Component{
                         <Route path="/register" component={Register} />
                         <Route path="/" exact component={Dashboard} />
                         <Route path="/post-create" component={Create} />
-                        <Route path="/post-edit/:id" component={Edit} />
+                        <Route path="/post-edit/:id" component={Create} />
                     </Switch>
                 </div>
                 <Footer/>

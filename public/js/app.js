@@ -72949,7 +72949,7 @@ var App = /*#__PURE__*/function (_React$Component) {
         component: _layouts_posts_Create__WEBPACK_IMPORTED_MODULE_11__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/post-edit/:id",
-        component: _layouts_posts_Edit__WEBPACK_IMPORTED_MODULE_12__["default"]
+        component: _layouts_posts_Create__WEBPACK_IMPORTED_MODULE_11__["default"]
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_includes_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
     }
   }]);
@@ -73026,8 +73026,6 @@ var Login = /*#__PURE__*/function (_React$Component) {
       password: '',
       token: ''
     };
-    _this.onchangeHandler = _this.onchangeHandler.bind(_assertThisInitialized(_this));
-    _this.onsubmitHandler = _this.onsubmitHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -73053,6 +73051,8 @@ var Login = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       // console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
@@ -73067,7 +73067,9 @@ var Login = /*#__PURE__*/function (_React$Component) {
       }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.onsubmitHandler,
+        onSubmit: function onSubmit(e) {
+          return _this2.onsubmitHandler(e);
+        },
         method: "POST",
         action: "#"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73081,7 +73083,9 @@ var Login = /*#__PURE__*/function (_React$Component) {
         id: "email",
         type: "email",
         className: "form-control",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         name: "email",
         value: this.state.email,
         required: true,
@@ -73098,7 +73102,9 @@ var Login = /*#__PURE__*/function (_React$Component) {
         id: "password",
         type: "password",
         className: "form-control",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         name: "password",
         value: this.state.password,
         required: true,
@@ -73209,8 +73215,6 @@ var Register = /*#__PURE__*/function (_React$Component) {
       email: '',
       password: ''
     };
-    _this.onchangeHandler = _this.onchangeHandler.bind(_assertThisInitialized(_this));
-    _this.onsubmitHandler = _this.onsubmitHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -73228,6 +73232,8 @@ var Register = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73241,7 +73247,9 @@ var Register = /*#__PURE__*/function (_React$Component) {
       }, "Register"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.onsubmitHandler,
+        onSubmit: function onSubmit(e) {
+          return _this2.onsubmitHandler(e);
+        },
         method: "POST",
         action: "#"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73256,7 +73264,9 @@ var Register = /*#__PURE__*/function (_React$Component) {
         type: "text",
         className: "form-control",
         name: "name",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         value: this.state.name,
         required: true,
         autoComplete: "name",
@@ -73273,7 +73283,9 @@ var Register = /*#__PURE__*/function (_React$Component) {
         type: "email",
         className: "form-control",
         name: "email",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         value: this.state.email,
         required: true,
         autoComplete: "email"
@@ -73289,7 +73301,9 @@ var Register = /*#__PURE__*/function (_React$Component) {
         type: "password",
         className: "form-control",
         name: "password",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         value: this.state.password,
         required: true,
         autoComplete: "new-password"
@@ -73305,7 +73319,9 @@ var Register = /*#__PURE__*/function (_React$Component) {
         type: "password",
         className: "form-control",
         name: "password_confirmation",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         value: this.state.password,
         required: true,
         autoComplete: "new-password"
@@ -73613,10 +73629,9 @@ var Create = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       title: '',
       subtitle: '',
-      content: ''
+      content: '',
+      edit: false
     };
-    _this.onchangeHandler = _this.onchangeHandler.bind(_assertThisInitialized(_this));
-    _this.onsubmitHandler = _this.onsubmitHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -73634,9 +73649,24 @@ var Create = /*#__PURE__*/function (_React$Component) {
       this.setState(_objectSpread(_objectSpread({}, this.state), {}, _defineProperty({}, event.target.name, event.target.value)));
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var post_id = this.props.match.params.id;
+
+      if (typeof post_id !== 'undefined') {
+        var post = this.props.editPost(post_id);
+        this.setState({
+          title: post.post.title,
+          subtitle: post.post.subtitle,
+          content: post.post.content
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      // console.log(this.props);
+      var _this2 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73650,7 +73680,9 @@ var Create = /*#__PURE__*/function (_React$Component) {
       }, "Create Post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.onsubmitHandler,
+        onSubmit: function onSubmit(e) {
+          return _this2.onsubmitHandler(e);
+        },
         method: "POST",
         action: "#"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73665,7 +73697,9 @@ var Create = /*#__PURE__*/function (_React$Component) {
         type: "text",
         className: "form-control",
         name: "title",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         value: this.state.title,
         required: true,
         autoComplete: "title",
@@ -73682,7 +73716,9 @@ var Create = /*#__PURE__*/function (_React$Component) {
         type: "text",
         className: "form-control",
         name: "subtitle",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         value: this.state.subtitle,
         required: true,
         autoComplete: "subtitle"
@@ -73697,7 +73733,9 @@ var Create = /*#__PURE__*/function (_React$Component) {
         id: "content",
         className: "form-control",
         name: "content",
-        onChange: this.onchangeHandler,
+        onChange: function onChange(e) {
+          return _this2.onchangeHandler(e);
+        },
         value: this.state.content,
         required: true
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73718,6 +73756,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createPost: function createPost(post) {
       return dispatch(Object(_store_actions_Post__WEBPACK_IMPORTED_MODULE_2__["createPost"])(post));
+    },
+    editPost: function editPost(id) {
+      return dispatch(Object(_store_actions_Post__WEBPACK_IMPORTED_MODULE_2__["editPost"])(id));
+    },
+    updatePost: function updatePost(post, id) {
+      return dispatch(Object(_store_actions_Post__WEBPACK_IMPORTED_MODULE_2__["updatePost"])(post, id));
     }
   };
 };
@@ -74025,7 +74069,6 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    // allPost: () => dispatch(allPost()),
     deletePost: function deletePost(id) {
       return dispatch(Object(_store_actions_Post__WEBPACK_IMPORTED_MODULE_2__["deletePost"])(id));
     }
@@ -74040,13 +74083,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /*!********************************************!*\
   !*** ./resources/js/store/actions/Post.js ***!
   \********************************************/
-/*! exports provided: createPost, allPost, deletePost */
+/*! exports provided: createPost, editPost, updatePost, deletePost */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPost", function() { return createPost; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allPost", function() { return allPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editPost", function() { return editPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePost", function() { return updatePost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePost", function() { return deletePost; });
 var createPost = function createPost(post) {
   post.id = Math.random();
@@ -74055,28 +74099,22 @@ var createPost = function createPost(post) {
     post: post
   };
 };
-var allPost = function allPost() {
-  var initState = {
-    posts: [{
-      id: 1,
-      title: 'Title 1',
-      subtitle: 'subtitle 1',
-      content: 'Content 1'
-    }, {
+var editPost = function editPost(id) {
+  return {
+    type: 'EDIT_POST',
+    post: {
       id: 2,
       title: 'Title 2',
       subtitle: 'subtitle 2',
       content: 'Content 2'
-    }, {
-      id: 3,
-      title: 'Title 3',
-      subtitle: 'subtitle 3',
-      content: 'Content 3'
-    }]
+    }
   };
+};
+var updatePost = function updatePost(post, id) {
+  post.id = Math.random();
   return {
-    type: 'ALL_POST',
-    posts: initState
+    type: 'UPDATE_POST',
+    post: post
   };
 };
 var deletePost = function deletePost(id) {
@@ -74166,9 +74204,6 @@ var authReducer = function authReducer() {
       return {
         posts: [].concat(_toConsumableArray(state.posts), [action.post])
       };
-
-    case 'ALL_POST':
-      return action.posts;
 
     case 'DELETE_POST':
       return {
